@@ -7,9 +7,9 @@ namespace REC_82
     {
         static StringBuilder codeOfCaesar(string originalString, int key)
         {
-            String[] ABC = { "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я" };
+            String[] ABC = { "А", "а", "Б", "б", "В", "в", "Г", "г", "Д", "д", "Е", "е", "Ё", "ё", "Ж", "ж", "З", "з", "И", "и", "Й", "й", "К", "к", "Л", "л", "М", "м", "Н", "н", "О", "о", "П", "п", "Р", "р", "С", "с", "Т", "т", "У", "у", "Ф", "ф", "Х", "х", "Ц", "ц", "Ч", "ч", "Ш", "ш", "Щ", "щ", "Ъ", "ъ", "Ы", "ы", "Ь", "ь", "Э", "э", "Ю", "ю", "Я","я", };
             StringBuilder encryptedString = new StringBuilder("");
-            originalString = originalString.ToUpper();
+           // originalString = originalString.ToUpper();
             for (int i = 0; i < originalString.Length; i++)
             {
                 string result = originalString[i].ToString();
@@ -35,28 +35,9 @@ namespace REC_82
 
         static StringBuilder uncodeOfCaesar(string encryptedString, int key)
         {
-            String[] ABC = { "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я" };
             StringBuilder decryptedString = new StringBuilder("");
-            for (int i = 0; i < encryptedString.Length; i++)
-            {
-                string result = encryptedString[i].ToString();
-                if (result == " ")
-                {
-                    decryptedString.Insert(decryptedString.Length, result);
-                }
-                else
-                {
-                    for (int j = 0; j < ABC.Length; j++)
-                    {
-                        if (result == ABC[j])
-                        {
-                            decryptedString.Insert(decryptedString.Length, ABC[(ABC.Length + j - key) % ABC.Length]);
-                            break;
-                        }
-                    }
-                }
-                
-            }
+            key = -key;
+            decryptedString = codeOfCaesar(encryptedString, key);
             return decryptedString;
         }
 
